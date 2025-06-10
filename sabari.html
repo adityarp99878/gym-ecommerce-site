@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume - Sabarinath S</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #34495e;
+            --accent-color: #3498db;
+            --text-color: #333;
+            --light-gray: #f5f6fa;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--light-gray);
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: white;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 2px solid var(--light-gray);
+        }
+
+        .header img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 1rem;
+            border: 3px solid var(--accent-color);
+        }
+
+        .header h1 {
+            color: var(--primary-color);
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact {
+            color: var(--secondary-color);
+            font-size: 1.1rem;
+        }
+
+        .contact a {
+            color: var(--accent-color);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .contact a:hover {
+            color: var(--primary-color);
+        }
+
+        .section {
+            margin-bottom: 2rem;
+        }
+
+        .section h2 {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--light-gray);
+        }
+
+        .skills, .languages {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .skills div, .languages div {
+            background-color: var(--light-gray);
+            padding: 0.8rem;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        .links a {
+            color: var(--accent-color);
+            text-decoration: none;
+            display: inline-block;
+            margin: 0.5rem 0;
+            transition: color 0.3s;
+        }
+
+        .links a:hover {
+            color: var(--primary-color);
+        }
+
+        strong {
+            color: var(--primary-color);
+        }
+
+        .experiences ul {
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .experiences li {
+            margin-bottom: 0.5rem;
+        }
+
+        .achievements div {
+            background-color: var(--light-gray);
+            padding: 0.8rem;
+            border-radius: 4px;
+            margin-bottom: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                margin: 1rem;
+                padding: 1rem;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .contact {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="profile-photo.jpg" alt="Sabarinath S"> 
+            <h1>Sabarinath S</h1>
+            <p class="contact">
+                <a href="mailto:Sabarinaths7@example.com">📧 Sabarinaths7@example.com</a> |
+                <span>📍 Ambellur, Thrissur, Kerala, India</span> |
+                <span>📱 +91 906 121 0100</span>
+            </p>
+        </div>
+
+        <div class="section">
+            <h2>Professional Summary</h2>
+            <p>Aspiring Computer Science student with a focus on AI, actively developing expertise in Java, HTML, and CSS. Passionate about technology and committed to continuous learning and personal development.</p>
+        </div>
+
+        <div class="section">
+            <h2>Education</h2>
+            <p><strong>B.Tech in Computer Science and Engineering (AI)</strong><br>
+            Amrita School of Computing, Amritapuri<br>
+            2024 – 2028</p>
+            
+            <p><strong>Higher Secondary Education</strong><br>
+            Bharatiya Vidya Bhavan, Thrissur, Kerala<br>
+            2022 – 2024</p>
+        </div>
+
+        <div class="section">
+            <h2>Technical Skills</h2>
+            <div class="skills">
+                <div>💻 Java</div>
+                <div>💻 C Programming</div>
+                <div>🌐 HTML & CSS</div>
+                <div>🛠️ VS Code</div>
+                <div>🛠️ Eclipse</div>
+                <div>🛠️ MATLAB</div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Professional Experience</h2>
+            <div class="experiences">
+                <div>
+                    <p><strong>Valorant Team Manager</strong> - Anokha 2024</p>
+                    <ul>
+                        <li>Successfully managed and coordinated the Valorant gaming team</li>
+                        <li>Demonstrated leadership and organizational skills in event management</li>
+                    </ul>
+                </div>
+                <div>
+                    <p><strong>Software Development Project</strong></p>
+                    <ul>
+                        <li>Developed a ToDo List application using C programming</li>
+                        <li>Implemented core functionality for task management and user interaction</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Achievements</h2>
+            <div class="achievements">
+                <div>🏆 Secured 5th position in Anokha Valorant Tournament</div>
+                <div>🥈 Runners-up in Football Sports Meet, Amritapuri</div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Languages</h2>
+            <div class="languages">
+                <div>🗣️ English - Professional Working Proficiency</div>
+                <div>🗣️ Malayalam - Native Proficiency</div>
+                <div>🗣️ Hindi - Professional Working Proficiency</div>
+            </div>
+        </div>
+
+        <div class="section links">
+            <h2>Professional Links</h2>
+            <p><a href="https://www.linkedin.com/in/sabarinath-s-5647b2332" target="_blank">LinkedIn Profile</a></p>
+        </div>
+    </div>
+</body>
+</html>

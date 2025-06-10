@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Titan Fit</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles1.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <h1>TITAN FIT</h1>
+        </div>
+        <nav id="blend">
+            <div class="nav-left">
+                <ul>
+                    <li><a href="javascript:void(0)" onclick="backToShop()">Home</a></li>
+                    <li><a href="#shop">Shop</a></li>
+                    <li><a href="javascript:void(0)" id="about-link" onclick="toggleAbout()">About</a></li>
+                    <li><a href="javascript:void(0)" id="wishlist-link" onclick="toggleWishlist()">Wishlist</a></li>
+                    <li><a href="javascript:void(0)" id="cart-link" onclick="toggleCart()">Cart</a></li>
+                </ul>
+            </div>
+            <div class="nav-right">
+                <div id="auth-buttons" class="auth-buttons">
+                    <a href="javascript:void(0)" id="login-link" onclick="toggleLogin()">Login</a>
+                    <a href="javascript:void(0)" id="signup-link" onclick="toggleSignup()">Sign Up</a>
+                </div>
+                <div id="user-info" class="user-info" style="display: none;">
+                    Welcome, <span id="username-display"></span>
+                    <a href="javascript:void(0)" onclick="logout()">Logout</a>
+                </div>
+                <div class="search-bar">
+                    <input type="text" id="searchInput" placeholder="Search Gear..." oninput="searchProducts()">
+                    <button onclick="searchProducts()">🔍</button>
+                    <div class="search-popup" id="searchPopup"></div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main id="mainContent">
+        <section class="hero">
+            <video class="hero-video" autoplay loop muted playsinline>
+                <source src="https://assets.mixkit.co/videos/40248/40248-720.mp4" type="video/mp4">
+             
+            </video>
+            <div class="hero-content">
+                <h2>Shred Like a Legend</h2>
+                <p>Elite black-and-grey gear inspired by David Laid's relentless grind.</p>
+                <button class="cta" onclick="window.location.href='#shop'">Build Your Legacy</button>
+            </div>
+        </section>
+
+        <section class="products" id="shop">
+            <h2>Recommended Gear</h2>
+            <div class="product-grid" id="recommendedGrid"></div>
+        </section>
+
+        <section class="products" id="mensGear">
+            <h2>Men's Gear</h2>
+            <div class="product-grid" id="mensGrid"></div>
+        </section>
+
+        <section class="products" id="womensGear">
+            <h2>Women's Gear</h2>
+            <div class="product-grid" id="womensGrid"></div>
+        </section>
+
+        <section class="products" id="gymEquipment">
+            <h2>Gym Equipment</h2>
+            <div class="product-grid" id="equipmentGrid"></div>
+        </section>
+    </main>
+
+    <section class="product-details" id="productDetails">
+        <button class="back-button" onclick="backToShop()">Back to Shop</button>
+        <div class="product-images">
+            <img id="mainImage" class="main-image" src="" alt="Product Image">
+            <div class="thumbnail-gallery" id="thumbnailGallery"></div>
+        </div>
+        <div class="product-info">
+            <h1 id="productName"></h1>
+            <p class="price" id="productPrice"></p>
+            <p id="productDescription"></p>
+            <div class="size-selector" id="sizeSelector">
+                <label for="size">Size:</label>
+                <select id="size" name="size">
+                    <option value="S">Small</option>
+                    <option value="M">Medium</option>
+                    <option value="L">Large</option>
+                    <option value="XL">X-Large</option>
+                </select>
+            </div>
+            <div class="weight-selector" id="weightSelector" style="display: none;">
+                <label for="weight">Weight:</label>
+                <select id="weight" name="weight">
+                    <option value="5kg">5kg</option>
+                    <option value="10kg">10kg</option>
+                    <option value="15kg">15kg</option>
+                    <option value="20kg">20kg</option>
+                </select>
+            </div>
+            <div class="action-buttons">
+                <button class="add-to-cart" onclick="addToCartFromDetails()">Add to Cart</button>
+                <button class="add-to-wishlist" onclick="addToWishlistFromDetails()">Add to Wishlist</button>
+            </div>
+            <div class="seller-details">
+                <h3>Seller Information</h3>
+                <p id="sellerName"></p>
+                <p id="sellerContact"></p>
+                <p id="sellerRating"></p>
+            </div>
+            <div class="delivery-info">
+                <h3>Delivery Information</h3>
+                <p id="deliveryTime"></p>
+            </div>
+        </div>
+    </section>
+
+    <div class="overlay" id="wishlistOverlay" onclick="toggleWishlist()"></div>
+    <div class="wishlist-popup" id="wishlistPopup">
+        <h2>Your Iron Wishlist</h2>
+        <div id="wishlistItems"></div>
+        <button class="close-wishlist" onclick="toggleWishlist()">Close</button>
+        <button class="buy-now" onclick="buyNowWishlist()">Buy Now</button>
+    </div>
+
+    <div class="overlay" id="cartOverlay" onclick="toggleCart()"></div>
+    <div class="cart-popup" id="cartPopup">
+        <h2>Your Grind Cart</h2>
+        <div id="cartItems"></div>
+        <p id="cartTotal">Total: $0.00</p>
+        <button class="close-cart" onclick="toggleCart()">Close</button>
+        <button class="buy-now" onclick="buyNowCart()">Buy Now</button>
+    </div>
+
+    <div class="overlay" id="aboutOverlay" onclick="toggleAbout()"></div>
+    <div class="about-popup" id="aboutPopup">
+        <h2>About Titan Fit</h2>
+        <p>Done by: </p>
+        <p>Aditya R Prasanth (AM.SC.U4AIE24101)</p>
+        <p>Sabarinath S (AM.SC.U4AIE24165)</p>
+        <p>Sangeeth T K (AM.SC.U4AIE24144)</p>
+        <p>Niyanth B Nair (AM.SC.U4AIE24163)</p>
+        <p>Relentless gear for the dedicated, forged by the Titan Fit Team since 2012.</p>
+        <button class="close-about" onclick="toggleAbout()">Close</button>
+    </div>
+
+    <div class="overlay" id="loginOverlay" onclick="toggleLogin()"></div>
+    <div class="login-popup" id="loginPopup">
+        <h2>Login</h2>
+        <div class="login-form">
+            <select id="loginType">
+                <option value="user">User Login</option>
+                <option value="seller">Seller Login</option>
+                <option value="admin">Admin Login</option>
+            </select>
+            <input type="text" id="username" placeholder="Username">
+            <input type="password" id="password" placeholder="Password">
+            <button class="login-btn" onclick="handleLogin()">Login</button>
+        </div>
+        <button class="close-login" onclick="toggleLogin()">Close</button>
+    </div>
+
+    <div class="overlay" id="signupOverlay" onclick="toggleSignup()"></div>
+    <div class="signup-popup" id="signupPopup">
+        <h2>Sign Up</h2>
+        <div class="signup-form">
+            <select id="signupRole">
+                <option value="user">User</option>
+                <option value="seller">Seller</option>
+            </select>
+            <input type="email" id="signupEmail" placeholder="Gmail Address">
+            <input type="text" id="signupUsername" placeholder="Username">
+            <input type="password" id="signupPassword" placeholder="Password">
+            <input type="password" id="signupConfirmPassword" placeholder="Confirm Password">
+            <div class="seller-fields" id="sellerFields">
+                <input type="text" id="signupStoreName" placeholder="Store Name">
+                <input type="email" id="signupContactEmail" placeholder="Contact Email">
+            </div>
+            <button class="signup-btn" onclick="handleSignup()">Sign Up</button>
+        </div>
+        <button class="close-signup" onclick="toggleSignup()">Close</button>
+    </div>
+
+    <div class="overlay" id="sellerDashboardOverlay" onclick="toggleSellerDashboard()"></div>
+    <div class="seller-dashboard" id="sellerDashboard">
+        <h2>Seller Dashboard</h2>
+        <div class="dashboard-content">
+            <div class="add-product-form">
+                <h3>Add New Product</h3>
+                <form id="addProductForm" onsubmit="handleAddProduct(event)">
+                    <input type="text" id="productName" placeholder="Product Name" required>
+                    <select id="productCategory" required>
+                        <option value="">Select Category</option>
+                        <option value="recommended">Recommended</option>
+                        <option value="mens">Men's Gear</option>
+                        <option value="womens">Women's Gear</option>
+                        <option value="equipment">Gym Equipment</option>
+                    </select>
+                    <select id="productType" required>
+                        <option value="">Select Type</option>
+                        <option value="clothing">Clothing</option>
+                        <option value="equipment">Equipment</option>
+                    </select>
+                    <input type="number" id="productPrice" placeholder="Price" step="0.01" required>
+                    <input type="text" id="productImage" placeholder="Main Image URL" required>
+                    <input type="text" id="productImages" placeholder="Additional Image URLs (comma-separated)" required>
+                    <textarea id="productDescription" placeholder="Product Description" required></textarea>
+                    <div id="variantFields">
+                        <div id="sizeFields" style="display: none;">
+                            <label>Available Sizes:</label>
+                            <div class="checkbox-group">
+                                <label><input type="checkbox" name="size" value="S"> S</label>
+                                <label><input type="checkbox" name="size" value="M"> M</label>
+                                <label><input type="checkbox" name="size" value="L"> L</label>
+                                <label><input type="checkbox" name="size" value="XL"> XL</label>
+                            </div>
+                        </div>
+                        <div id="weightFields" style="display: none;">
+                            <label>Available Weights:</label>
+                            <div class="checkbox-group">
+                                <label><input type="checkbox" name="weight" value="5kg"> 5kg</label>
+                                <label><input type="checkbox" name="weight" value="10kg"> 10kg</label>
+                                <label><input type="checkbox" name="weight" value="15kg"> 15kg</label>
+                                <label><input type="checkbox" name="weight" value="20kg"> 20kg</label>
+                            </div>
+                        </div>
+                    </div>
+                    <input type="number" id="deliveryDays" placeholder="Delivery Days" required>
+                    <button type="submit" class="add-product-btn">Add Product</button>
+                </form>
+            </div>
+            <div class="my-products">
+                <h3>My Products</h3>
+                <div id="sellerProducts"></div>
+            </div>
+        </div>
+        <button class="close-dashboard" onclick="toggleSellerDashboard()">Close</button>
+    </div>
+
+    <div class="overlay" id="checkoutOverlay" onclick="toggleCheckout()"></div>
+    <div class="checkout-popup" id="checkoutPopup">
+        <h2>Checkout</h2>
+        <div id="orderSummary"></div>
+        <p id="totalAmount">Total: $0.00</p>
+        <div class="checkout-form">
+            <input type="text" id="fullName" placeholder="Full Name" required>
+            <input type="text" id="address" placeholder="Address" required>
+            <input type="text" id="city" placeholder="City" required>
+            <input type="text" id="zipCode" placeholder="Zip Code" required>
+            <select id="country" required>
+                <option value="" disabled selected>Select Country</option>
+                <option value="usa">USA</option>
+                <option value="canada">Canada</option>
+                <option value="uk">UK</option>
+                <option value="india">India</option>
+            </select>
+            <select id="paymentMethod" required>
+                <option value="" disabled selected>Select Payment Method</option>
+                <option value="visa">Visa</option>
+                <option value="mastercard">Mastercard</option>
+                <option value="cod">Cash on Delivery</option>
+                <option value="upi">UPI</option>
+            </select>
+            <button class="confirm-order" onclick="confirmOrder()">Confirm Order</button>
+        </div>
+        <button class="close-checkout" onclick="toggleCheckout()">Close</button>
+    </div>
+
+    <div class="overlay" id="notificationOverlay"></div>
+    <div class="notification-popup" id="notificationPopup">
+        <h2 id="notificationTitle"></h2>
+        <p id="notificationMessage"></p>
+        <button class="close-notification" onclick="toggleNotification()">Close</button>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Our Mission</h3>
+                <p>Relentless gear for the dedicated, inspired by David Laid's aesthetic.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="javascript:void(0)" onclick="backToShop()">Home</a></li>
+                    <li><a href="#shop">Shop</a></li>
+                    <li><a href="javascript:void(0)" onclick="toggleAbout()">About</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p>Team Members:</p>
+                <ul>
+                    <li><a href="a.html" target="_blank">Aditya R Prasanth</a></li>
+                    <li><a href="sabari.html" target="_blank">Sabarinath S</a></li>
+                    <li><a href="sangeeth.html" target="_blank">Sangeeth T K</a></li>
+                    <li><a href="index.html" target="_blank">Niyanth B Nair</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <div class="social-links">
+                    <a href="#">Instagram</a>
+                    <a href="#">Twitter</a>
+                    <a href="#">Facebook</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 Titan Fit. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
